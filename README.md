@@ -102,3 +102,21 @@ Sebelumnya server hanya memakai satu thread, sehingga request lambat membuat req
 
 ### Kesimpulan
 Saya memahami bahwa multithreading membantu server menangani request secara paralel. Implementasi [`ThreadPool::execute`](src/lib.rs) menjadi inti dari mekanisme ini karena memungkinkan server membagi pekerjaan ke worker yang tersedia.
+
+
+# Bonus Reflection Notes
+## Reflection Notes
+
+Pada bonus ini, saya membuat fungsi [`hello::ThreadPool::build`](src/lib.rs) sebagai pengganti [`hello::ThreadPool::new`](src/lib.rs). Perubahan ini membuat inisialisasi thread pool lebih jelas dan tetap menjalankan fungsi yang sama seperti sebelumnya.
+
+### Yang saya pelajari
+- [`hello::ThreadPool::build`](src/lib.rs) digunakan untuk membuat thread pool dengan jumlah worker tertentu.
+- Logika pembuatan worker tetap sama seperti pada [`hello::ThreadPool::new`](src/lib.rs).
+- [`hello::ThreadPool::execute`](src/lib.rs) tetap dipakai untuk mengirim job ke worker.
+- Di [src/main.rs](src/main.rs), server sekarang memanggil [`hello::ThreadPool::build`](src/lib.rs) saat membuat pool.
+
+### Perbandingan
+Secara fungsi, `build` dan `new` sama-sama membuat thread pool. Bedanya hanya pada nama **method**. Saya memahami bahwa pemilihan nama fungsi yang lebih sesuai bisa membuat kode lebih mudah dibaca dan lebih eksplisit dan ini kan sama saja gimmick dengan fungsi yang sudah ada, cuman yang kita buat bisa dibatasi. 
+
+### Kesimpulan
+Bonus ini membantu saya memahami refactoring kecil pada API internal program. Walaupun perilakunya sama, perubahan nama metode dapat meningkatkan kejelasan kode.
