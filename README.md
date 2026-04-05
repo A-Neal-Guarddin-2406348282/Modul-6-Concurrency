@@ -83,3 +83,22 @@ Simulasi ini membantu saya memahami bahwa server yang hanya berjalan pada satu t
 
 ### Kesimpulan
 Saya memahami bahwa penanganan request lambat perlu dipikirkan dengan baik dalam desain web server. Refactoring ke model yang lebih efisien, seperti multi-threading atau async, diperlukan agar server tetap responsif saat melayani banyak request. Apabila banyak user yang menggunakan dan seperti simulasi di atas memerlukan 10 detik sleep, maka akan mengurangi tingkat kepuasan user terhadap website.
+
+
+# Commit 5 Reflection Notes
+## Reflection Notes
+
+Pada milestone ini, saya mempelajari bagaimana server **multithreaded** bekerja dengan bantuan [`ThreadPool`](src/lib.rs) di [src/lib.rs](src/lib.rs). Berdasarkan dokumentasi Rust pada bagian implementasi [`ThreadPool::execute`](src/lib.rs), thread pool digunakan untuk mengirim pekerjaan ke worker melalui channel, lalu worker akan mengeksekusi job tersebut secara paralel.
+
+### Yang saya pelajari
+- [`ThreadPool::new`](src/lib.rs) membuat sejumlah worker yang siap menerima tugas.
+- [`ThreadPool::execute`](src/lib.rs) mengirim closure sebagai job ke channel.
+- [`Worker::new`](src/lib.rs) membuat thread yang terus menunggu job dari queue.
+- Di [src/main.rs](src/main.rs), `main` membuat [`ThreadPool`](src/lib.rs) dan mengirim [`handle_connection`](src/main.rs) ke pool untuk diproses.
+- Dengan model ini, request yang lambat seperti `/sleep` tidak akan sepenuhnya memblokir request lain.
+
+### Mengapa multithreaded server diperlukan
+Sebelumnya server hanya memakai satu thread, sehingga request lambat membuat request lain ikut tertahan. Dengan thread pool, beberapa request **bisa diproses bersamaan oleh worker yang berbeda**. Ini membuat server lebih responsif dan lebih realistis untuk melayani banyak user.
+
+### Kesimpulan
+Saya memahami bahwa multithreading membantu server menangani request secara paralel. Implementasi [`ThreadPool::execute`](src/lib.rs) menjadi inti dari mekanisme ini karena memungkinkan server membagi pekerjaan ke worker yang tersedia.
