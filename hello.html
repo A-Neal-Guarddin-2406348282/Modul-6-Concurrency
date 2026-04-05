@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Neal's Rust Page</title>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #0f766e);
+            color: #e2e8f0;
+        }
+
+        .card {
+            width: min(720px, calc(100% - 32px));
+            padding: 32px;
+            border-radius: 20px;
+            background: rgba(15, 23, 42, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.25);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+            backdrop-filter: blur(10px);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(34, 197, 94, 0.15);
+            color: #86efac;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            line-height: 1.1;
+        }
+
+        p {
+            margin: 0 0 16px;
+            color: #cbd5e1;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        .item {
+            padding: 16px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .item strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #f8fafc;
+        }
+
+        .footer {
+            margin-top: 24px;
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="card">
+        <div class="badge">Rust • TCP Server</div>
+        <h1>Hello from Neal’s Rust server</h1>
+        <p>
+            This page is served directly from <strong>hello.html</strong> by the Rust program.
+            It is a simple example of how a browser request can receive a custom response from simple Rust server.
+        </p>
+
+        <div class="footer">
+            Hi from Rust, running from Neal's machine.
+        </div>
+    </main>
+</body>
+
+</html>

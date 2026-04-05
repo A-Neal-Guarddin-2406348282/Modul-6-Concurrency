@@ -19,3 +19,24 @@ Browser mengirim HTTP request dalam bentuk teks yang berisi request line, header
 
 ### Kesimpulan
 Saya menjadi paham bahwa [`handle_connection`](src/main.rs) adalah bagian penting untuk menerima dan membaca request dari browser. Dari sini, saya belajar bagaimana komunikasi dasar HTTP bekerja pada server Rust sederhana.
+
+
+# Commit 2 Reflection Notes
+
+## Reflection Notes
+
+Pada commit ini, saya memperbarui server Rust agar tidak hanya membaca request dari browser, tetapi juga mengirimkan respons HTML dari [hello.html](hello.html). Saya juga memahami lebih jelas isi dari [`handle_connection`](src/main.rs) di [src/main.rs](src/main.rs), yaitu menerima koneksi `TcpStream`, membaca request HTTP, lalu mengirim response ke browser.
+
+### Yang saya pelajari
+- [`handle_connection`](src/main.rs) menerima koneksi dari browser melalui `TcpStream`.
+- `BufReader` digunakan untuk membaca request baris demi baris.
+- `lines()` dipakai untuk mengambil isi request sebagai teks.
+- `take_while(|line| !line.is_empty())` menghentikan pembacaan saat header HTTP selesai.
+- File [hello.html](hello.html) dibaca dengan `fs::read_to_string`.
+- Response dikirim dengan status line `HTTP/1.1 200 OK` dan header `Content-Length`.
+
+### Hasil tampilan
+![Commit 2 screen capture](assets/images/commit2.png)
+
+### Kesimpulan
+Saya jadi lebih paham bagaimana browser dan server berkomunikasi lewat HTTP request dan response. Dengan perubahan ini, server dapat menampilkan halaman HTML buatan sendiri secara langsung di browser.
