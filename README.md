@@ -62,3 +62,24 @@ Sebelumnya server selalu mengirim [hello.html](hello.html) meskipun path yang di
 
 ### Kesimpulan
 Saya memahami bahwa validasi request adalah bagian penting dalam HTTP. Dengan membedakan response untuk `/` dan `/bad`, server Rust sederhana ini menjadi lebih sesuai dengan perilaku web server yang sebenarnya.
+
+# Commit 4 Reflection Notes
+## Reflection Notes
+
+Pada milestone ini, saya mempelajari dampak server single-thread saat menangani request lambat. Perubahan pada [`handle_connection`](src/main.rs) di [src/main.rs](src/main.rs) menambahkan route `/sleep` yang membuat server menunggu beberapa detik sebelum mengirim response.
+
+### Yang saya pelajari
+- [`handle_connection`](src/main.rs) tetap membaca request dari browser seperti sebelumnya.
+- Jika path yang diminta adalah `/sleep`, server menunda response selama beberapa detik.
+- Selama proses itu berjalan, request lain ikut tertahan karena server masih memakai satu thread saja.
+- Hal ini menunjukkan bahwa desain single-thread tidak cocok jika ada banyak user yang mengakses server secara bersamaan.
+- Response untuk `/` tetap menampilkan [hello.html](hello.html), sedangkan request yang tidak dikenali tetap diarahkan ke [404.html](404.html).
+
+### Mengapa ini penting
+Simulasi ini membantu saya memahami bahwa server yang hanya berjalan pada satu thread akan menjadi lambat ketika ada request yang membutuhkan waktu lama. Jika ada banyak request bersamaan, request lain harus menunggu sampai proses sebelumnya selesai.
+
+### Hasil tampilan
+![Commit 4 screen capture](assets/images/commit4.png)
+
+### Kesimpulan
+Saya memahami bahwa penanganan request lambat perlu dipikirkan dengan baik dalam desain web server. Refactoring ke model yang lebih efisien, seperti multi-threading atau async, diperlukan agar server tetap responsif saat melayani banyak request. Apabila banyak user yang menggunakan dan seperti simulasi di atas memerlukan 10 detik sleep, maka akan mengurangi tingkat kepuasan user terhadap website.

@@ -1,1 +1,1 @@
-/home/neal-guarddin/Documents/Fasilkom/Progjut/hello/target/debug/hello: /home/neal-guarddin/Documents/Fasilkom/Progjut/hello/src/main.rs
+/home/neal-guarddin/Documents/Fasilkom/Progjut/hello/target/debug/hello: /home/neal-guarddin/Documents/Fasilkom/Progjut/hello/src/lib.rs /home/neal-guarddin/Documents/Fasilkom/Progjut/hello/src/main.rs
