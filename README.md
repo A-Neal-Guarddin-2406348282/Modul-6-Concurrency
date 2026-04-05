@@ -40,3 +40,25 @@ Pada commit ini, saya memperbarui server Rust agar tidak hanya membaca request d
 
 ### Kesimpulan
 Saya jadi lebih paham bagaimana browser dan server berkomunikasi lewat HTTP request dan response. Dengan perubahan ini, server dapat menampilkan halaman HTML buatan sendiri secara langsung di browser. Selain itu, penempatan file dalam proyek juga sangat berpengaruh.
+
+
+# Commit 3 Reflection Notes
+## Reflection Notes
+
+Pada milestone ini, saya memperbarui [`handle_connection`](src/main.rs) di [src/main.rs](src/main.rs) agar server dapat memvalidasi request dan memberi response yang berbeda sesuai path yang diminta browser.
+
+### Yang saya pelajari
+- [`handle_connection`](src/main.rs) membaca request line pertama dari browser.
+- Request `GET / HTTP/1.1` diarahkan ke [hello.html](hello.html) dengan status `200 OK`.
+- Request `GET /bad HTTP/1.1` diarahkan ke [404.html](404.html) dengan status `404 NOT FOUND`.
+- Server sekarang tidak selalu mengirim halaman yang sama untuk semua request.
+- Refactoring ini membuat server lebih realistis karena mampu membedakan halaman valid dan halaman tidak valid.
+
+### Mengapa refactoring ini diperlukan
+Sebelumnya server selalu mengirim [hello.html](hello.html) meskipun path yang diminta salah. Dengan validasi request, server bisa merespons secara selektif dan menampilkan halaman error yang sesuai ketika browser mengakses route yang tidak tersedia.
+
+### Hasil tampilan
+![Commit 3 screen capture](assets/images/commit3.png)
+
+### Kesimpulan
+Saya memahami bahwa validasi request adalah bagian penting dalam HTTP. Dengan membedakan response untuk `/` dan `/bad`, server Rust sederhana ini menjadi lebih sesuai dengan perilaku web server yang sebenarnya.
