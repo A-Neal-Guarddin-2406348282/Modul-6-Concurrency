@@ -39,4 +39,4 @@ Pada commit ini, saya memperbarui server Rust agar tidak hanya membaca request d
 ![Commit 2 screen capture](assets/images/commit2.png)
 
 ### Kesimpulan
-Saya jadi lebih paham bagaimana browser dan server berkomunikasi lewat HTTP request dan response. Dengan perubahan ini, server dapat menampilkan halaman HTML buatan sendiri secara langsung di browser.
+Saya jadi lebih paham bagaimana browser dan server berkomunikasi lewat HTTP request dan response. Dengan perubahan ini, server dapat menampilkan halaman HTML buatan sendiri secara langsung di browser. Selain itu, penempatan file dalam proyek juga sangat berpengaruh.
